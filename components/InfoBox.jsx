@@ -1,21 +1,28 @@
-const InfoBox = ({
-  heading,
-  backgroundColor = 'bg-gray-100',
-  textColor = 'text-gray-800',
-  buttonInfo,
-  children,
-}) => {
+const InfoBox = ({ infoBoxVal }) => {
+  const { title, description, buttonName, buttonBackground, backgroundColor } =
+    infoBoxVal;
   return (
-    <div className={`${backgroundColor} p-6 rounded-lg shadow-md`}>
-      <h2 className={`${textColor} text-2xl font-bold`}>{heading}</h2>
-      <p className={`${textColor} mt-2 mb-4`}>{children}</p>
-      <a
-        href={buttonInfo.link}
-        className={`inline-block ${buttonInfo.backgroundColor} text-white rounded-lg px-4 py-2 hover:opacity-80`}
-      >
-        {buttonInfo.text}
-      </a>
+    <div
+      key={title}
+      className={`card w-auto m-8 shadow-xl ${
+        backgroundColor ? backgroundColor : "bg-base-100"
+      }`}
+    >
+      <div className="card-body">
+        <h2 className="card-title">{title}</h2>
+        <p>{description}</p>
+        <div className="card-actions justify-start">
+          <button
+            className={`btn text-white  ${
+              buttonBackground ? buttonBackground : "bg-black"
+            }  hover:bg-blue-500 border-transparent`}
+          >
+            {buttonName}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
+
 export default InfoBox;
